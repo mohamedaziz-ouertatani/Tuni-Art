@@ -1,17 +1,24 @@
 package tn.esprit;
 
-import tn.esprit.entities.*;
-import tn.esprit.services.*;
-import tn.esprit.utils.*;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.List;
+import java.io.IOException;
 
-public class Main {
+public class Main extends Application {
+
+    @Override
+    public void start(Stage primaryStage) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/tn/esprit/main.fxml"));
+        primaryStage.setTitle("Delivery Management System");
+        primaryStage.setScene(new Scene(root, 800, 600));
+        primaryStage.show();
+    }
 
     public static void main(String[] args) {
-        //  ...
+        launch(args);
     }
 }

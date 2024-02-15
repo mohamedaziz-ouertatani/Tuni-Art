@@ -12,7 +12,27 @@ public class MainController {
 
     @FXML
     public void loadDeliveryManagement() {
-        loadFXML("delivery_management.fxml");
+        loadFXML("/tn/esprit/delivery_management.fxml");
+    }
+
+    @FXML
+    public void loadUserManagement() {
+        loadFXML("/tn/esprit/user_management.fxml");
+    }
+
+    @FXML
+    public void loadProductManagement() {
+        loadFXML("/tn/esprit/product_management.fxml");
+    }
+
+    @FXML
+    public void loadOrderManagement() {
+        loadFXML("/tn/esprit/order_management.fxml");
+    }
+
+    @FXML
+    public void loadEventManagement() {
+        loadFXML("/tn/esprit/event_management.fxml");
     }
 
     private void loadFXML(String fxmlFileName) {
