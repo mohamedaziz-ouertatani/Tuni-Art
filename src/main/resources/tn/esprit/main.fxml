@@ -4,17 +4,15 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="tn.esprit.gui.MainController"
-            prefHeight="400.0" prefWidth="600.0">
+    xmlns:fx="http://javafx.com/fxml" fx:controller="tn.esprit.gui.MainController" prefHeight="400.0" prefWidth="600.0">
 
     <top>
         <VBox style="-fx-background-color: #336699;">
             <ToolBar>
-                <Button text="User Management" />
-                <Button text="Product Management" />
-                <Button text="Order Management" />
-                <Button text="Event Management" />
+                <Button text="User Management" onAction="#loadUserManagement"/>
+                <Button text="Product Management" onAction="#loadProductManagement"/>
+                <Button text="Order Management" onAction="#loadOrderManagement"/>
+                <Button text="Event Management" onAction="#loadEventManagement"/>
                 <Button text="Delivery Management" onAction="#loadDeliveryManagement"/>
             </ToolBar>
         </VBox>
