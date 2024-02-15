@@ -1,5 +1,3 @@
 package tn.esprit.gui;
 
-public class EventManagementController {
-
-}
+public class EventManagementController {}

@@ -1,5 +1,3 @@
 package tn.esprit.gui;
 
-public class DeliveryManagementController {
-
-}
+public class DeliveryManagementController {}

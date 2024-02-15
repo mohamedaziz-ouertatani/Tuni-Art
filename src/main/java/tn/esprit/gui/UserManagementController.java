@@ -1,5 +1,3 @@
 package tn.esprit.gui;
 
-public class UserManagementController {
-
-}
+public class UserManagementController {}
