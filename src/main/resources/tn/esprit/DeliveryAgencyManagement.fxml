@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import tn.esprit.entities.DeliveryAgency?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+    xmlns:fx="http://javafx.com/fxml" fx:controller="tn.esprit.gui.DeliveryAgencyManagementController" prefHeight="400.0" prefWidth="600.0">
+
+    <center>
+        <VBox>
+            <TableView fx:id="tableView">
+                <columns>
+                    <TableColumn text="Agency ID" fx:id="agencyIdColumn">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="agencyId"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Agency Name" fx:id="agencyNameColumn">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="agencyName"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Agency Address" fx:id="agencyAddressColumn">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="agencyAddress"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Number of Deliveries" fx:id="nbDeliveriesColumn">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="nbDeliveries"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+
+            <HBox>
+                <TextField fx:id="agencyIdTextField" promptText="Agency ID"/>
+                <TextField fx:id="agencyNameTextField" promptText="Agency Name"/>
+                <TextField fx:id="agencyAddressTextField" promptText="Agency Address"/>
+                <TextField fx:id="nbDeliveriesTextField" promptText="Number of Deliveries"/>
+                <Button text="Add" onAction="#addAgency"/>
+                <Button text="Update" onAction="#updateAgency"/>
+                <Button text="Delete" onAction="#deleteAgency"/>
+            </HBox>
+        </VBox>
+    </center>
+
+</BorderPane>
