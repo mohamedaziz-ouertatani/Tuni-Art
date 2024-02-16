@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import tn.esprit.entities.Delivery?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+    xmlns:fx="http://javafx.com/fxml" fx:controller="tn.esprit.gui.DeliveryManagementController" prefHeight="400.0" prefWidth="600.0">
+
+    <center>
+        <VBox>
+            <TableView fx:id="deliveryTable" prefHeight="200.0" prefWidth="200.0">
+                <columns>
+                    <TableColumn text="Delivery ID">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="deliveryId"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Order ID">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="orderId"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Estimated Date">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="estimatedDate"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Delivery Fees">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="deliveryFees"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Destination">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="destination"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="State">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="state"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Agency ID">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="agencyId"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+
+            <HBox>
+                <TextField fx:id="orderIdField" promptText="Order ID"/>
+                <TextField fx:id="estimatedDateField" promptText="Estimated Date"/>
+                <TextField fx:id="deliveryFeesField" promptText="Delivery Fees"/>
+                <TextField fx:id="destinationField" promptText="Destination"/>
+                <TextField fx:id="stateField" promptText="State"/>
+                <TextField fx:id="agencyIdField" promptText="Agency ID"/>
+                <Button text="Add" onAction="#addDelivery"/>
+                <Button text="Update" onAction="#updateDelivery"/>
+                <Button text="Delete" onAction="#deleteDelivery"/>
+            </HBox>
+        </VBox>
+    </center>
+
+</BorderPane>
