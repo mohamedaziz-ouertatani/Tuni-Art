@@ -10,11 +10,11 @@ public class Art_Piece {
     String Description;
     String Style;
 
-    public Art_Piece(int art_ref, String art_title, float art_price, int Aid, String type, Date creation, String description, String style) {
+    public Art_Piece(int art_ref, String art_title, float art_price, int aid, String type, Date creation, String description, String style) {
         Art_ref = art_ref;
         Art_title = art_title;
         Art_price = art_price;
-        aid = Aid;
+        this.aid = aid;
         Type = type;
         Creation = creation;
         Description = description;

@@ -17,7 +17,7 @@ public class Art_PieceService implements IService<Art_Piece> {
 
     @Override
     public void add(Art_Piece Art_Piece) throws SQLException {
-        String query = "INSERT INTO `art`( `Art_title`, `Art_price`, `Artist`, `Type`, `Creation`, `Description`, `Style`) VALUES ('"+Art_Piece.getArt_title()+"','"+Art_Piece.getArt_price()+"','"+Art_Piece.getaid()+"','"+Art_Piece.getType()+"','"+Art_Piece.getCreation()+"','"+Art_Piece.getDescription()+"','"+Art_Piece.getStyle()+"')";
+        String query = "INSERT INTO `art`( `art_title`, `art_price`, `artist_id`, `type`, `creation`, `description`, `style`) VALUES ('"+Art_Piece.getArt_title()+"','"+Art_Piece.getArt_price()+"','"+Art_Piece.getaid()+"','"+Art_Piece.getType()+"','"+Art_Piece.getCreation()+"','"+Art_Piece.getDescription()+"','"+Art_Piece.getStyle()+"')";
         stm = con.createStatement();
         stm.executeUpdate(query);
         System.out.println("Art_Piece added!");
@@ -25,7 +25,7 @@ public class Art_PieceService implements IService<Art_Piece> {
 
     @Override
     public void addd(Art_Piece Art_Piece) throws SQLException {
-        String query = "INSERT INTO `art`( `Art_title`, `Art_price`, `Artist`, `Type`, `Creation`, `Description`, `Style`) VALUES (?,?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO `art`( `art_title`, `art_price`, `artist_id`, `type`, `creation`, `description`, `style`) VALUES (?,?,?,?,?,?,?)";
         PreparedStatement ps = con.prepareStatement(query);
 
         ps.setString(1, Art_Piece.getArt_title());
@@ -42,7 +42,7 @@ public class Art_PieceService implements IService<Art_Piece> {
 
     @Override
     public void update(Art_Piece Art_Piece) throws SQLException {
-        String query = "UPDATE art SET Art_title=?, Art_price=?, Artist=?, Type=?, Creation=?, Description=?, Style=? WHERE Art_ref=?";
+        String query = "UPDATE art SET art_title=?, art_price=?, artist_id=?, type=?, creation=?, description=?, style=? WHERE art_ref=?";
         PreparedStatement ps = con.prepareStatement(query);
 
         ps.setString(1, Art_Piece.getArt_title());
@@ -59,7 +59,7 @@ public class Art_PieceService implements IService<Art_Piece> {
 
     @Override
     public void delete(int id) throws SQLException {
-        String query = "DELETE FROM art WHERE Art_ref = ?";
+        String query = "DELETE FROM art WHERE art_ref = ?";
         PreparedStatement ps = con.prepareStatement(query);
 
         ps.setInt(1, id);
@@ -84,7 +84,7 @@ public class Art_PieceService implements IService<Art_Piece> {
             String Style = res.getString(7);
 
 
-            Art_Piece a = new Art_Piece(Art_title, Art_price, aid, Type, Creation, Description ,Style);
+            Art_Piece a = new Art_Piece(Art_ref,Art_title, Art_price, aid, Type, Creation, Description ,Style);
             Art_Pieces.add(a);
         }
         return Art_Pieces;
