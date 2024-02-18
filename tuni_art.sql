@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : lun. 12 fév. 2024 à 20:14
--- Version du serveur : 10.4.28-MariaDB
--- Version de PHP : 8.1.17
+-- Host: 127.0.0.1
+-- Generation Time: Feb 14, 2024 at 05:12 PM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `tuni'art`
+-- Database: `tuni'art`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `art`
+-- Table structure for table `art`
 --
 
 CREATE TABLE `art` (
@@ -36,12 +36,12 @@ CREATE TABLE `art` (
   `description` varchar(512) NOT NULL,
   `style` varchar(512) NOT NULL,
   `artist_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `artist`
+-- Table structure for table `artist`
 --
 
 CREATE TABLE `artist` (
@@ -57,12 +57,27 @@ CREATE TABLE `artist` (
   `biography` varchar(512) NOT NULL,
   `portfolio` varchar(512) NOT NULL,
   `verification_code` varchar(512) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `cart`
+-- Table structure for table `auction`
+--
+
+CREATE TABLE `auction` (
+  `auction_ref` int(11) NOT NULL,
+  `auction_name` varchar(512) NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `threshold` float NOT NULL,
+  `aid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
 --
 
 CREATE TABLE `cart` (
@@ -70,24 +85,24 @@ CREATE TABLE `cart` (
   `totalPrice` float NOT NULL,
   `uid` int(11) NOT NULL,
   `state` varchar(512) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `cart_art`
+-- Table structure for table `cart_art`
 --
 
 CREATE TABLE `cart_art` (
   `cart_ref` int(11) NOT NULL,
   `art_ref` int(11) NOT NULL,
   `quantity` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `delivery`
+-- Table structure for table `delivery`
 --
 
 CREATE TABLE `delivery` (
@@ -98,12 +113,12 @@ CREATE TABLE `delivery` (
   `destination` varchar(512) NOT NULL,
   `state` tinyint(1) NOT NULL,
   `agency_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `delivery_agency`
+-- Table structure for table `delivery_agency`
 --
 
 CREATE TABLE `delivery_agency` (
@@ -111,12 +126,27 @@ CREATE TABLE `delivery_agency` (
   `agency_name` varchar(512) NOT NULL,
   `agency_address` varchar(512) NOT NULL,
   `nb_deliveries` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `order`
+-- Table structure for table `event`
+--
+
+CREATE TABLE `event` (
+  `event_id` int(11) NOT NULL,
+  `event_title` varchar(512) NOT NULL,
+  `category` varchar(512) NOT NULL,
+  `event_date` date NOT NULL,
+  `duration` int(11) NOT NULL,
+  `aid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order`
 --
 
 CREATE TABLE `order` (
@@ -125,12 +155,12 @@ CREATE TABLE `order` (
   `paymentMethod` varchar(512) NOT NULL,
   `receiptionMethod` varchar(512) NOT NULL,
   `cart_ref` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `review`
+-- Table structure for table `review`
 --
 
 CREATE TABLE `review` (
@@ -140,12 +170,12 @@ CREATE TABLE `review` (
   `date_published` date NOT NULL,
   `rating` int(11) NOT NULL,
   `comment` varchar(512) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -159,48 +189,55 @@ CREATE TABLE `user` (
   `birth_date` date NOT NULL,
   `password` varchar(512) NOT NULL,
   `verification_code` varchar(512) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`uid`, `fname`, `lname`, `email`, `gender`, `phone_nb`, `profile_pic`, `birth_date`, `password`, `verification_code`) VALUES
 (2, 'Arij', 'Mahouechi', 'arij.mahouechi@esprit.tn', 1, 22334455, NULL, '2001-10-12', '12131415', NULL);
 
 --
--- Index pour les tables déchargées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `art`
+-- Indexes for table `art`
 --
 ALTER TABLE `art`
   ADD PRIMARY KEY (`art_ref`),
   ADD KEY `fk_artist_art` (`artist_id`);
 
 --
--- Index pour la table `artist`
+-- Indexes for table `artist`
 --
 ALTER TABLE `artist`
   ADD PRIMARY KEY (`aid`);
 
 --
--- Index pour la table `cart`
+-- Indexes for table `auction`
+--
+ALTER TABLE `auction`
+  ADD PRIMARY KEY (`auction_ref`),
+  ADD KEY `fk_artist_auction` (`aid`);
+
+--
+-- Indexes for table `cart`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`cart_ref`),
   ADD KEY `fk_user_cart` (`uid`);
 
 --
--- Index pour la table `cart_art`
+-- Indexes for table `cart_art`
 --
 ALTER TABLE `cart_art`
   ADD PRIMARY KEY (`cart_ref`,`art_ref`),
   ADD KEY `fk_art_cartart` (`art_ref`);
 
 --
--- Index pour la table `delivery`
+-- Indexes for table `delivery`
 --
 ALTER TABLE `delivery`
   ADD PRIMARY KEY (`delivery_id`),
@@ -208,20 +245,27 @@ ALTER TABLE `delivery`
   ADD KEY `fk_agency_delivery` (`agency_id`);
 
 --
--- Index pour la table `delivery_agency`
+-- Indexes for table `delivery_agency`
 --
 ALTER TABLE `delivery_agency`
   ADD PRIMARY KEY (`agency_id`);
 
 --
--- Index pour la table `order`
+-- Indexes for table `event`
+--
+ALTER TABLE `event`
+  ADD PRIMARY KEY (`event_id`),
+  ADD KEY `fk_artist_event` (`aid`);
+
+--
+-- Indexes for table `order`
 --
 ALTER TABLE `order`
   ADD PRIMARY KEY (`order_id`),
   ADD KEY `fk_cart_order` (`cart_ref`);
 
 --
--- Index pour la table `review`
+-- Indexes for table `review`
 --
 ALTER TABLE `review`
   ADD PRIMARY KEY (`review_id`),
@@ -229,101 +273,125 @@ ALTER TABLE `review`
   ADD KEY `fk_user_review` (`uid`);
 
 --
--- Index pour la table `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`uid`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `art`
+-- AUTO_INCREMENT for table `art`
 --
 ALTER TABLE `art`
   MODIFY `art_ref` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `artist`
+-- AUTO_INCREMENT for table `artist`
 --
 ALTER TABLE `artist`
   MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `cart`
+-- AUTO_INCREMENT for table `auction`
+--
+ALTER TABLE `auction`
+  MODIFY `auction_ref` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
   MODIFY `cart_ref` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `delivery`
+-- AUTO_INCREMENT for table `delivery`
 --
 ALTER TABLE `delivery`
   MODIFY `delivery_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `delivery_agency`
+-- AUTO_INCREMENT for table `delivery_agency`
 --
 ALTER TABLE `delivery_agency`
   MODIFY `agency_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `order`
+-- AUTO_INCREMENT for table `event`
+--
+ALTER TABLE `event`
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
   MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `review`
+-- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
   MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Contraintes pour les tables déchargées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `art`
+-- Constraints for table `art`
 --
 ALTER TABLE `art`
   ADD CONSTRAINT `fk_artist_art` FOREIGN KEY (`artist_id`) REFERENCES `artist` (`aid`);
 
 --
--- Contraintes pour la table `cart`
+-- Constraints for table `auction`
+--
+ALTER TABLE `auction`
+  ADD CONSTRAINT `fk_artist_auction` FOREIGN KEY (`aid`) REFERENCES `artist` (`aid`);
+
+--
+-- Constraints for table `cart`
 --
 ALTER TABLE `cart`
   ADD CONSTRAINT `fk_user_cart` FOREIGN KEY (`uid`) REFERENCES `user` (`uid`);
 
 --
--- Contraintes pour la table `cart_art`
+-- Constraints for table `cart_art`
 --
 ALTER TABLE `cart_art`
   ADD CONSTRAINT `fk_art_cartart` FOREIGN KEY (`art_ref`) REFERENCES `art` (`art_ref`),
   ADD CONSTRAINT `fk_cart_cartart` FOREIGN KEY (`cart_ref`) REFERENCES `cart` (`cart_ref`);
 
 --
--- Contraintes pour la table `delivery`
+-- Constraints for table `delivery`
 --
 ALTER TABLE `delivery`
   ADD CONSTRAINT `fk_agency_delivery` FOREIGN KEY (`agency_id`) REFERENCES `delivery_agency` (`agency_id`),
   ADD CONSTRAINT `fk_order_delivery` FOREIGN KEY (`order_id`) REFERENCES `order` (`order_id`);
 
 --
--- Contraintes pour la table `order`
+-- Constraints for table `event`
+--
+ALTER TABLE `event`
+  ADD CONSTRAINT `fk_artist_event` FOREIGN KEY (`aid`) REFERENCES `artist` (`aid`);
+
+--
+-- Constraints for table `order`
 --
 ALTER TABLE `order`
   ADD CONSTRAINT `fk_cart_order` FOREIGN KEY (`cart_ref`) REFERENCES `cart` (`cart_ref`);
 
 --
--- Contraintes pour la table `review`
+-- Constraints for table `review`
 --
 ALTER TABLE `review`
   ADD CONSTRAINT `fk_art_review` FOREIGN KEY (`art_ref`) REFERENCES `art` (`art_ref`),
