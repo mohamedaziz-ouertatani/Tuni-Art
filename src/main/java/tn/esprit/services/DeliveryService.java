@@ -1,7 +1,6 @@
 package tn.esprit.services;
 
 import tn.esprit.entities.Delivery;
-import tn.esprit.utils.MyDatabase;
 
 import java.sql.*;
 import java.util.ArrayList;
