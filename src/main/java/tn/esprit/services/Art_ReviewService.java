@@ -22,12 +22,12 @@ public class Art_ReviewService implements IService <Art_Review> {
             String query = "INSERT INTO `review`( `Art_ref`, `uid`, `Date_published`, `Rating`, `Comment`) VALUES ('"+Art_Review.getArt_Ref()+"','"+Art_Review.getUid()+"','"+Art_Review.getDate_published()+"','"+Art_Review.getRating()+"','"+Art_Review.getComment()+"')";
             stm = con.createStatement();
             stm.executeUpdate(query);
-            System.out.println("Art_Review added!");
+            System.out.println("Art Review added!");
         }
 
         @Override
         public void addd(Art_Review Art_Review) throws SQLException {
-            String query = "INSERT INTO `review`( `Art_ref`, `uid`, `Date_published`, `Rating`, `Comment`) VALUES (?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO `review`( `Art_ref`, `uid`, `Date_published`, `Rating`, `Comment`) VALUES (?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(query);
 
             ps.setInt(1, Art_Review.getArt_Ref());
@@ -80,8 +80,7 @@ public class Art_ReviewService implements IService <Art_Review> {
                 String comment = res.getString(6);
 
 
-
-                Art_Review a = new Art_Review(art_ref, uid, date_published, rating, comment);
+                Art_Review a = new Art_Review(Review_id,art_ref, uid, date_published, rating, comment);
                 Art_Reviews.add(a);
             }
             return Art_Reviews;

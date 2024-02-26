@@ -9,6 +9,45 @@ public class Art_Piece {
     Date Creation;
     String Description;
     String Style;
+    String image_path;
+
+    public String getImage_path() {
+        return image_path;
+    }
+
+    public Art_Piece( String art_title, float art_price, int aid, String type, Date creation, String description, String style, String image_path) {
+
+        Art_title = art_title;
+        Art_price = art_price;
+        this.aid = aid;
+        Type = type;
+        Creation = creation;
+        Description = description;
+        Style = style;
+        this.image_path = image_path;
+    }
+
+    public Art_Piece(int art_ref, String art_title, float art_price, int aid, String type, Date creation, String description, String style, String image_path) {
+        Art_ref = art_ref;
+        Art_title = art_title;
+        Art_price = art_price;
+        this.aid = aid;
+        Type = type;
+        Creation = creation;
+        Description = description;
+        Style = style;
+        this.image_path = image_path;
+    }
+
+    public void setImage_path(String image_path) {
+        this.image_path = image_path;
+    }
+
+    public Art_Piece(String art_title, float art_price, String description) {
+        Art_title = art_title;
+        Art_price = art_price;
+        Description = description;
+    }
 
     public Art_Piece(int art_ref, String art_title, float art_price, int aid, String type, Date creation, String description, String style) {
         Art_ref = art_ref;
@@ -25,6 +64,15 @@ public class Art_Piece {
         Art_title = art_title;
         Art_price = art_price;
         this.aid = aid;
+        Type = type;
+        Creation = creation;
+        Description = description;
+        Style = style;
+    }
+
+    public Art_Piece(String art_title, float art_price, String type, Date creation, String description, String style) {
+        Art_title = art_title;
+        Art_price = art_price;
         Type = type;
         Creation = creation;
         Description = description;
