@@ -1,4 +1,4 @@
-package tn.esprit.controllers;
+package tn.esprit.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,10 +20,8 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import tn.esprit.entities.Event;
 import tn.esprit.entities.Auction;
 import tn.esprit.services.AuctionService;
-import tn.esprit.services.EventService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -60,7 +58,7 @@ public class ViewAuctions implements Initializable {
             //call the method to create user boxes and add them to the container
             List<VBox> auctionBoxes = createauctionBox(auctions);
             auctionContainer.getChildren().addAll(auctionBoxes);
-            // Add padding to the eventcontainer
+            // Add padding to the auctionContainer
             auctionContainer.setPadding(new Insets(10)); // Adjust the value as needed
         } catch (SQLException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -100,6 +98,8 @@ public class ViewAuctions implements Initializable {
             HBox buttonsBox = new HBox(10); // 10 is the spacing between buttons (adjust as needed)
             buttonsBox.getChildren().addAll( delete, update);
             buttonsBox.setPadding(new Insets(10, 0, 0, 10));
+
+
             update.setStyle("-fx-background-color: E18B10; -fx-background-radius: 55; -fx-text-fill: white;");
             delete.setStyle("-fx-background-color: E18B10; -fx-background-radius: 55; -fx-text-fill: white;");
             auctionBox.setAlignment(Pos.CENTER);

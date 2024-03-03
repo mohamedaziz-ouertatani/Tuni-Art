@@ -1,4 +1,4 @@
-package tn.esprit.controllers;
+package tn.esprit.Controllers;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -79,6 +79,7 @@ public class AddEvent implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Image logo = new Image("file:src\\images\\logo.png");
         logoId.setImage(logo);
+        category_id.setItems(FXCollections.observableArrayList(Categories));
 
     }
 

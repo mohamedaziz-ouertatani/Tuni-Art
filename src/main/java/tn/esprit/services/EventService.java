@@ -14,9 +14,10 @@ public class EventService implements IService<Event> {
     public EventService() {
         con = MyDatabase.getInstance().getConn();
     }
+
     @Override
     public void add(Event event) throws SQLException {
-        String query = "INSERT INTO `event`(`event_title`, `category`, `event_date`, `duration`, `aid`) VALUES ('"+event.getEvent_title()+"','"+event.getCategory()+"','"+event.getEvent_date()+"','"+event.getDuration()+"','"+event.getAid()+"')";
+        String query = "INSERT INTO `event`(`event_title`, `category`, `event_date`, `duration`, `aid`) VALUES ('" + event.getEvent_title() + "','" + event.getCategory() + "','" + event.getEvent_date() + "','" + event.getDuration() + "','" + event.getAid() + "')";
         stm = con.createStatement();
         stm.executeUpdate(query);
         System.out.println("Event added!");
@@ -48,7 +49,7 @@ public class EventService implements IService<Event> {
         ps.setDate(3, event.getEvent_date());
         ps.setInt(4, event.getDuration());
         ps.setInt(5, event.getAid());
-        ps.setInt(6,event.getEvent_id());
+        ps.setInt(6, event.getEvent_id());
         ps.executeUpdate();
         System.out.println("Event updated!");
 
@@ -77,7 +78,7 @@ public class EventService implements IService<Event> {
             Date event_date = res.getDate(4);
             int duration = res.getInt(5);
             int aid = res.getInt(6);
-            Event e = new Event( event_id, duration, aid, event_title, category, event_date);
+            Event e = new Event(event_id, duration, aid, event_title, category, event_date);
             events.add(e);
         }
         return events;

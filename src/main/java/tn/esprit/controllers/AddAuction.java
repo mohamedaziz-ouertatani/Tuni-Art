@@ -1,17 +1,22 @@
-package tn.esprit.controllers;
+package tn.esprit.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import tn.esprit.entities.Auction;
-import tn.esprit.entities.Event;
 import tn.esprit.services.AuctionService;
-import tn.esprit.services.EventService;
 import javafx.scene.image.ImageView;
+
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -28,6 +33,8 @@ public class AddAuction implements Initializable {
 
     @FXML
     private TextField name_id;
+    @FXML
+    private ImageView backid;
     @FXML
     private ImageView logoId;
 
@@ -130,6 +137,8 @@ public class AddAuction implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Image logo = new Image("file:src\\images\\logo.png");
         logoId.setImage(logo);
+        Image back = new Image("file:src\\images\\back-button.png");
+        backid.setImage(back);
 
         startDate_id.setDayCellFactory(picker -> new DateCell() {
             @Override
@@ -171,6 +180,36 @@ public class AddAuction implements Initializable {
         alert.setContentText(message);
         alert.showAndWait();
     }
+    @FXML
+    void move_back(MouseEvent event) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/ViewAuctions.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        javafx.scene.image.Image icon = new Image("file:/src/images/logo.png");
+
+        // Create a new stage for the new window
+        Stage newStage = new Stage();
+        newStage.getIcons().add(icon);
+
+        // Set the scene with the new root
+        Scene scene = new Scene(root);
+        newStage.setScene(scene);
+        newStage.setTitle("Tuni'Art");
+
+        // Close the old stage
+        Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        oldStage.close();
+
+        // Show the new stage
+        newStage.show();
+
+        System.out.println("moved");
+
     }
+
+}
 
 

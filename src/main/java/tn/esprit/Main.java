@@ -68,26 +68,35 @@ public class Main {
         } catch (SQLException e) {
             System.out.println(e.getMessage());;
         }*/
-        Auction newAuction = new Auction("YSFF",Date.valueOf("2023-02-25") , Date.valueOf("2023-02-28"), 239, 9, 2);
-        /*try {
-            as.addd(newAuction);
+      //  Auction newAuction = new Auction("YSFF",Date.valueOf("2023-02-25") , Date.valueOf("2023-02-28"), 239, 9, 2);
+        Auction noww = new Auction("cute",Date.valueOf("2023-02-25") , Date.valueOf("2023-02-28"), 239, 9, 2);
+//2
+/*
+        try {
+            as.addd(noww);
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }*/
+        }
+*/
+//2
+        System.out.println(noww);
+//1
 
-        System.out.println(newAuction);
-
-        newAuction.setAuction_ref(131);
-        newAuction.setAuction_name("New Name");
-        System.out.println(newAuction);
+       noww.setAuction_ref(134);
+        noww.setAuction_name("verycute");
+        System.out.println(noww);
 
         try {
-            as.update(newAuction);
+            as.update(noww);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        System.out.println(newAuction);
+        System.out.println(noww);
+
+
+
+        //1
         try {
             System.out.println(as.diplayList());
         } catch (SQLException e) {

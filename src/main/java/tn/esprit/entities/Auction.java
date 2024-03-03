@@ -8,8 +8,20 @@ public class Auction {
     String auction_name;
     float threshold;
     int uid;
+    String status;
+    float highest_bid;
+    int currentWinner_id;
+    int interactions;
 
-    public Auction(int auction_ref, String auction_name, Date start_date, Date end_date, float threshold,int art_ref, int uid) {
+    public int getInteractions() {
+        return interactions;
+    }
+
+    public void setInteractions(int interactions) {
+        this.interactions = interactions;
+    }
+
+    public Auction(int auction_ref, String auction_name, Date start_date, Date end_date, float threshold, int art_ref, int uid) {
         this.auction_ref = auction_ref;
         this.auction_name = auction_name;
         this.start_date = start_date;
@@ -47,6 +59,31 @@ public class Auction {
 
         this.threshold = threshold;
         this.uid=i;
+    }
+
+    public Auction(int art_ref, Date start_date, Date end_date, String auction_name, float threshold, int uid, String status, float highest_bid, int currentWinner_id) {
+        this.art_ref = art_ref;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.auction_name = auction_name;
+        this.threshold = threshold;
+        this.uid = uid;
+        this.status = status;
+        this.highest_bid = highest_bid;
+        this.currentWinner_id = currentWinner_id;
+    }
+
+    public Auction(int auction_ref, int art_ref, Date start_date, Date end_date, String auction_name, float threshold, int uid, String status, float highest_bid, int currentWinner_id) {
+        this.auction_ref = auction_ref;
+        this.art_ref = art_ref;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.auction_name = auction_name;
+        this.threshold = threshold;
+        this.uid = uid;
+        this.status = status;
+        this.highest_bid = highest_bid;
+        this.currentWinner_id = currentWinner_id;
     }
 
     @Override
@@ -107,7 +144,34 @@ public class Auction {
         return threshold;
     }
 
-   public int getUid(){ return uid; }
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public float getHighest_bid() {
+        return highest_bid;
+    }
+
+    public void setHighest_bid(float highest_bid) {
+        this.highest_bid = highest_bid;
+    }
+
+    public int getCurrentWinner_id() {
+        return currentWinner_id;
+    }
+
+    public void setCurrentWinner_id(int currentWinner_id) {
+        this.currentWinner_id = currentWinner_id;
+    }
+
+    public int getUid(){ return uid;
+
+
+    }
     public void setThreshold(float threshold) {
         this.threshold = threshold;
     }

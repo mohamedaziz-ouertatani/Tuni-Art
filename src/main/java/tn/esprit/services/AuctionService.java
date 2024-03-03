@@ -57,6 +57,20 @@ public class AuctionService implements IService<Auction> {
 
     }
 
+    public void updateThreshold(float newThreshold, int auctionId) throws SQLException {
+        String updateQuery = "UPDATE auction SET threshold = ? ,interactions = interactions + 1 WHERE auction_ref = ?";
+        try (Connection connection = MyDatabase.getInstance().getConn();
+             PreparedStatement statement = connection.prepareStatement(updateQuery)) {
+            statement.setFloat(1, newThreshold);
+            statement.setInt(2, auctionId);
+            statement.executeUpdate();
+        }
+    }
+
+
+
+
+
     @Override
     public void delete(int ref) throws SQLException {
         String query = "DELETE FROM auction WHERE auction_ref = ?";

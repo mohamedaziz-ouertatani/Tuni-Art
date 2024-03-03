@@ -1,4 +1,4 @@
-package tn.esprit.controllers;
+package tn.esprit.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -148,7 +148,7 @@ public class ViewEvents implements Initializable {
             });
 
             eventBox.setAlignment(Pos.CENTER);
-            eventBox.getChildren().addAll(titleLabel,categoryLabel,dateLabel,durationLabel, buttonsBox);
+            eventBox.getChildren().addAll(titleLabel,categoryLabel,dateLabel,durationLabel, buttonsBox);//display everything
 
 
             // Add margin to the bottom of the VBox
