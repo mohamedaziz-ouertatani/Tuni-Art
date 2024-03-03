@@ -1,4 +1,4 @@
-package tn.esprit.controllers;
+package tn.esprit.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -59,6 +59,12 @@ public class ViewGalleries implements Initializable {
     @FXML
     private ImageView printId;
 
+    @FXML
+    private ImageView searchBtn;
+
+    @FXML
+    private ImageView sortBtn;
+
 
     @FXML
     private Text uidTextId;
@@ -73,6 +79,11 @@ public class ViewGalleries implements Initializable {
         logoId.setImage(logo);
         Image print = new Image("file:src\\images\\tun.png");
         printId.setImage(print);
+
+        Image search = new Image("file:src/images/search-interface-symbol.png");
+        searchBtn.setImage(search);
+        Image sort = new Image("file:src/images/sorting.png");
+        sortBtn.setImage(sort);
 
         artsContainer.setPadding(new Insets(30)); // Adjust padding as needed
         artsContainer.setHgap(80); // Set horizontal gap between elements
@@ -117,6 +128,7 @@ public class ViewGalleries implements Initializable {
             HBox buttonsBox = new HBox(10); // 10 is the spacing between buttons (adjust as needed)
             buttonsBox.getChildren().addAll( deleteButton, updateButton);
             buttonsBox.setPadding(new Insets(10, 50, 20, 10));
+            buttonsBox.setAlignment(Pos.CENTER);
 
             Label title_label = new Label(art.getGallery_name().toUpperCase());
             Label price_label = new Label(art.getGallery_location().toUpperCase());
@@ -219,8 +231,8 @@ public class ViewGalleries implements Initializable {
             artBox.setStyle("-fx-background-color: #3B2A19; -fx-background-radius: 55;");
             artBox.setAlignment(Pos.CENTER);
 
+            artBox.getChildren().addAll(buttonsBox);
             artBoxes.add(artBox);
-            artBox.getChildren().addAll( buttonsBox);
         }
         return artBoxes;
     }

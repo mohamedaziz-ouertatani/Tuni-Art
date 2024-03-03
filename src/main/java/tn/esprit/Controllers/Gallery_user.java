@@ -1,4 +1,4 @@
-package tn.esprit.controllers;
+package tn.esprit.Controllers;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;

@@ -1,10 +1,12 @@
-package tn.esprit.controllers;
+package tn.esprit.Controllers;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,12 +17,10 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -68,11 +68,27 @@ public class Gallery implements Initializable {
     @FXML
     private ImageView printId;
 
+    @FXML
+    private ImageView searchBtn;
+
+    @FXML
+    private ImageView sortBtn;
+
+    @FXML
+    private TextField inputSearch;
+
+    @FXML
+    private ChoiceBox<String> sortBox;
 
     @FXML
     private Text uidTextId;
     @FXML
     private Button upload_art;
+
+    ObservableList<String> items = FXCollections.observableArrayList(
+            "Art Title",
+            "Art Views"
+    );
 
     private String generateQRContent(Art_Piece artPiece) {
         // Generate the content for the QR code based on the art piece details
@@ -122,7 +138,18 @@ public class Gallery implements Initializable {
         artsContainer.setPadding(new Insets(30)); // Adjust padding as needed
         artsContainer.setHgap(80); // Set horizontal gap between elements
         artsContainer.setVgap(20); // Set vertical gap between lines
+
+        Image search = new Image("file:src/images/search-interface-symbol.png");
+        searchBtn.setImage(search);
+        Image sort = new Image("file:src/images/sorting.png");
+        sortBtn.setImage(sort);
+
         displayArts();
+
+        sortBox.setItems(items);
+
+        // Set default selection
+        sortBox.getSelectionModel();
         }
 
 
@@ -153,7 +180,7 @@ public class Gallery implements Initializable {
             artBox.setStyle("-fx-padding: 20px; -fx-spacing: 30px; -fx-background-color: #f7f8fa; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);");
 
             // Set a fixed width for the VBox
-            artBox.setPrefWidth(250); // Adjust width here (e.g., 200 pixels)
+            artBox.setPrefWidth(330); // Adjust width here (e.g., 200 pixels)
 
             // Add margin to the VBox
             artBox.setMargin(artBox, new Insets(10));
@@ -167,6 +194,7 @@ public class Gallery implements Initializable {
             HBox buttonsBox = new HBox(10); // 10 is the spacing between buttons (adjust as needed)
             buttonsBox.getChildren().addAll( Filller,deleteButton, updateButton,playButton);
             buttonsBox.setPadding(new Insets(10, 50, 20, 10));
+            buttonsBox.setAlignment(Pos.CENTER);
 
             Label title_label = new Label(art.getArt_title().toUpperCase());
 
@@ -181,6 +209,7 @@ public class Gallery implements Initializable {
             deleteButton.setStyle("-fx-background-color: E18B10; -fx-background-radius: 55; -fx-text-fill: white;");
             playButton.setStyle("-fx-background-color: E18B10; -fx-background-radius: 55; -fx-text-fill: white;");
             price_label.setTextFill(Color.WHITE);// Set text color to white
+
             artBox.setAlignment(Pos.CENTER);
             artBox.getChildren().addAll( title_label,price_label,category_label);
 
@@ -415,6 +444,60 @@ public class Gallery implements Initializable {
         System.out.println("moved");
 
 
+    }
+
+    public void sortArts() {
+        try {
+            List<Art_Piece> arts = new ArrayList<>();;
+            String selectedSortItem = sortBox.getValue(); // Get the selected item from the ChoiceBox
+
+            if (selectedSortItem.equals("Art Title")) {
+                System.out.println("title");
+                arts = as.sortbynamediplayList();
+            } else if (selectedSortItem.equals("Art Views")) {
+                System.out.println("views");
+                arts = as.sortbyviewsdiplayList(); }
+
+
+            // Clear existing user boxes before adding new ones
+            artsContainer.getChildren().clear();
+
+                // Call the method to create art boxes and add them to the container
+                List<VBox> artBoxes = createArtBox(arts);
+                artsContainer.getChildren().addAll(artBoxes);
+        } catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    void searchArts(MouseEvent event) {
+        String input = inputSearch.getText();
+
+        try {
+            List<Art_Piece> arts = as.searchByTitle(input);
+            System.out.println(arts);
+
+            // Clear existing user boxes before adding new ones
+            artsContainer.getChildren().clear();
+
+            // Call the method to create user boxes and add them to the container
+            List<VBox> artBoxes = createArtBox(arts);
+            artsContainer.getChildren().addAll(artBoxes);
+        } catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    void sort(MouseEvent event) {
+        sortArts();
     }
 
 }
