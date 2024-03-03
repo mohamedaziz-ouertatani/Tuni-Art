@@ -14,23 +14,19 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import tn.esprit.entities.Art_Piece;
 import tn.esprit.entities.gallery;
-import tn.esprit.services.Art_PieceService;
 import tn.esprit.services.galleryService;
 
-
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -44,6 +40,12 @@ public class ViewGalleries implements Initializable {
 
     @FXML
     private MenuBar Menu_id;
+
+    @FXML
+    private Button go_to_arts;
+
+    @FXML
+    private Button go_to_galleries;
 
     @FXML
     private ImageView profilePictureId;
@@ -258,7 +260,7 @@ public class ViewGalleries implements Initializable {
         // Set the scene with the new root
         Scene scene = new Scene(root);
         newStage.setScene(scene);
-        newStage.setTitle("Submit Art");
+        newStage.setTitle("Tuni'Art");
 
         // Close the old stage
         Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -269,5 +271,40 @@ public class ViewGalleries implements Initializable {
 
         System.out.println("moved");
 
+    }
+
+
+
+    @FXML
+    public void go_to_arts(javafx.event.ActionEvent actionEvent) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/gallery.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        javafx.scene.image.Image icon = new Image("file:/src/images/logo.png");
+
+        // Create a new stage for the new window
+        Stage newStage = new Stage();
+        newStage.getIcons().add(icon);
+
+        // Set the scene with the new root
+        Scene scene = new Scene(root);
+        newStage.setScene(scene);
+        newStage.setTitle("Tuni'Art");
+
+        // Close the old stage
+        Stage oldStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        oldStage.close();
+
+        // Show the new stage
+        newStage.show();
+
+        System.out.println("moved");
+
+    }
+    @FXML
+    public void go_to_galleries(javafx.event.ActionEvent actionEvent) {
     }
 }

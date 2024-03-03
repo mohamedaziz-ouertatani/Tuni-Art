@@ -10,6 +10,68 @@ public class Art_Piece {
     String Description;
     String Style;
     String image_path;
+    String music_path;
+    int art_views;
+
+    public Art_Piece(String art_title, float art_price, int aid, String type, Date creation, String description, String style, String image_path, String music_path, int art_views) {
+        Art_title = art_title;
+        Art_price = art_price;
+        this.aid = aid;
+        Type = type;
+        Creation = creation;
+        Description = description;
+        Style = style;
+        this.image_path = image_path;
+        this.music_path = music_path;
+        this.art_views = art_views;
+    }
+
+    public Art_Piece(int art_ref, String art_title, float art_price, int aid, String type, Date creation, String description, String style, String image_path, String music_path, int art_views) {
+        Art_ref = art_ref;
+        Art_title = art_title;
+        Art_price = art_price;
+        this.aid = aid;
+        Type = type;
+        Creation = creation;
+        Description = description;
+        Style = style;
+        this.image_path = image_path;
+        this.music_path = music_path;
+        this.art_views = art_views;
+    }
+
+    public Art_Piece(String art_title, float art_price, int aid, String type, Date creation, String description, String style, String image_path, String music_path) {
+        Art_title = art_title;
+        Art_price = art_price;
+        this.aid = aid;
+        Type = type;
+        Creation = creation;
+        Description = description;
+        Style = style;
+        this.image_path = image_path;
+        this.music_path = music_path;
+    }
+
+    public String getMusic_path() {
+        return music_path;
+    }
+
+    public void setMusic_path(String music_path) {
+        this.music_path = music_path;
+    }
+
+    public Art_Piece(int art_ref, String art_title, float art_price, int aid, String type, Date creation, String description, String style, String image_path, String music_path) {
+        Art_ref = art_ref;
+        Art_title = art_title;
+        Art_price = art_price;
+        this.aid = aid;
+        Type = type;
+        Creation = creation;
+        Description = description;
+        Style = style;
+        this.image_path = image_path;
+        this.music_path = music_path;
+    }
 
     public String getImage_path() {
         return image_path;
@@ -77,6 +139,17 @@ public class Art_Piece {
         Creation = creation;
         Description = description;
         Style = style;
+    }
+    public void incrementArtViews() {
+        art_views++;
+    }
+
+    public int getArt_views() {
+        return art_views;
+    }
+
+    public void setArt_views(int art_views) {
+        this.art_views = art_views;
     }
 
     public int getArt_ref() {

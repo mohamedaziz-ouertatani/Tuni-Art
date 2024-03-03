@@ -1,17 +1,24 @@
 package tn.esprit.controllers;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import tn.esprit.entities.Art_Piece;
 import tn.esprit.services.Art_PieceService;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -22,6 +29,9 @@ import java.util.Map;
 public class UpdateArt {
     private final Map<String, List<String>> typeToStylesMap = new HashMap<>();
     private final  String[] styles = {};
+
+    @FXML
+    private ImageView back_button;
 
     @FXML
     private ImageView logoId;
@@ -88,7 +98,7 @@ public class UpdateArt {
 
         // Create an instance of UpdateService
         Art_PieceService updateService = new Art_PieceService();
-        Art_Piece updatedArtPiece = new Art_Piece(primaryKey,title, (float) price,5,type,Date.valueOf("2024-01-01"),description,style);
+        Art_Piece updatedArtPiece = new Art_Piece(primaryKey,title, (float) price,5,type,Date.valueOf("2024-01-01"),description,style,null);
 
 
         try {
@@ -120,6 +130,8 @@ public class UpdateArt {
     public void initialize() {
         Image logo = new Image("file:src\\images\\logo.png");
         logoId.setImage(logo);
+        Image back = new Image("file:src\\images\\back-button.png");
+        back_button.setImage(back);
         type_field_id.setItems(FXCollections.observableArrayList("Painting","Sculpture","Music","Literature","Architecture","Crocheting "));
         style_field_id.setItems(FXCollections.observableArrayList(styles));
         typeToStylesMap.put("Painting", Arrays.asList("Impressionism","Expressionism","Cubism","Surrealism","Abstract Expressionism","Pop Art"));
@@ -152,4 +164,32 @@ public class UpdateArt {
     }
 
 
+    public void go_back(MouseEvent mouseEvent) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/gallery.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        javafx.scene.image.Image icon = new Image("file:/src/images/logo.png");
+
+        // Create a new stage for the new window
+        Stage newStage = new Stage();
+        newStage.getIcons().add(icon);
+
+        // Set the scene with the new root
+        Scene scene = new Scene(root);
+        newStage.setScene(scene);
+        newStage.setTitle("Tuni'Art");
+
+        // Close the old stage
+        Stage oldStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        oldStage.close();
+
+        // Show the new stage
+        newStage.show();
+
+        System.out.println("moved");
+
+    }
 }
