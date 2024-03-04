@@ -1,2 +1,4 @@
 // Define the handleMarkerClick function
-function handleMarkerClick(event) { alert('Marker clicked!'); }
+function handleMarkerClick(event) {
+  alert("Marker clicked!");
+}
