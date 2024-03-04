@@ -1,4 +1,4 @@
-package tn.esprit.gui;
+package tn.esprit.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;

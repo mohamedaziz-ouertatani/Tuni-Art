@@ -8,28 +8,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class MainController {
 
-    private void loadWindow(String fxmlFile) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+public class AdminMain {
+
 
     @FXML
     private void loadDeliveryManagement() {
-        loadWindow("/tn/esprit/DeliveryManagement.fxml");
+        //loadWindow("/tn/esprit/DeliveryManagement.fxml");
     }
 
     @FXML
     private void loadDeliveryAgencyManagement() {
-        loadWindow("/tn/esprit/DeliveryAgencyManagement.fxml");
+        //loadWindow("/tn/esprit/DeliveryAgencyManagement.fxml");
     }
 
     @FXML
@@ -45,8 +35,21 @@ public class MainController {
     @FXML
 
     private void loadOrderManagement() {
-        // Implement order management window loading here
+        loadWindow("/OrderManagement.fxml");
     }
+
+    private void loadWindow(String fxmlFile) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @FXML
     private void loadEventManagement() {
