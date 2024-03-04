@@ -6,7 +6,7 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 
 <BorderPane xmlns="http://javafx.com/javafx"
-    xmlns:fx="http://javafx.com/fxml" fx:controller="tn.esprit.gui.DeliveryManagementController" prefHeight="400.0" prefWidth="600.0">
+            xmlns:fx="http://javafx.com/fxml" fx:controller="tn.esprit.gui.DeliveryManagementController" prefHeight="400.0" prefWidth="600.0">
 
     <center>
         <VBox>
@@ -50,17 +50,34 @@
                 </columns>
             </TableView>
 
-            <HBox>
-                <TextField fx:id="orderIdField" promptText="Order ID"/>
-                <TextField fx:id="estimatedDateField" promptText="Estimated Date"/>
-                <TextField fx:id="deliveryFeesField" promptText="Delivery Fees"/>
-                <TextField fx:id="destinationField" promptText="Destination"/>
-                <TextField fx:id="stateField" promptText="State"/>
-                <TextField fx:id="agencyIdField" promptText="Agency ID"/>
-                <Button text="Add" onAction="#addDelivery"/>
-                <Button text="Update" onAction="#updateDelivery"/>
-                <Button text="Delete" onAction="#deleteDelivery"/>
-            </HBox>
+            <GridPane>
+                <Label text="Order ID" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <TextField fx:id="orderIdField" promptText="Order ID" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                <Label text="Estimated Date" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <TextField fx:id="estimatedDateField" promptText="Estimated Date" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                <Label text="Delivery Fees" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <TextField fx:id="deliveryFeesField" promptText="Delivery Fees" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+                <Label text="Destination" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <TextField fx:id="destinationField" promptText="Destination" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+                <Label text="State" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                <TextField fx:id="stateField" promptText="State" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+                <Label text="Agency ID" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+                <TextField fx:id="agencyIdField" promptText="Agency ID" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+
+                <HBox GridPane.columnIndex="0" GridPane.rowIndex="7" GridPane.columnSpan="2">
+                    <TextField fx:id="searchField" promptText="Search"/>
+                    <Button text="Search" onAction="#searchDelivery"/>
+                </HBox>
+
+                <Button text="Add" onAction="#addDelivery" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
+                <Button text="Update" onAction="#updateDelivery" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+                <Button text="Delete" onAction="#deleteDelivery" GridPane.columnIndex="2" GridPane.rowIndex="8"/>
+            </GridPane>
         </VBox>
     </center>
 

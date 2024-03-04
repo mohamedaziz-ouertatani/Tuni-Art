@@ -1,11 +1,13 @@
 package tn.esprit.gui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import tn.esprit.entities.Delivery;
 import tn.esprit.services.DeliveryService;
 import tn.esprit.utils.MyDatabase;
+import java.util.List;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -34,6 +36,9 @@ public class DeliveryManagementController {
     @FXML
     private TextField agencyIdField;
 
+    @FXML
+    private TextField searchField; // Add this line
+
     private DeliveryService deliveryService;
 
     public DeliveryManagementController() {
@@ -48,6 +53,14 @@ public class DeliveryManagementController {
 
     @FXML
     private void addDelivery() throws SQLException {
+        if (orderIdField.getText().isEmpty() || estimatedDateField.getText().isEmpty() || deliveryFeesField.getText().isEmpty() || destinationField.getText().isEmpty() || stateField.getText().isEmpty() || agencyIdField.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Please fill all fields");
+            alert.showAndWait();
+            return;
+        }
+
         int orderId = Integer.parseInt(orderIdField.getText());
         LocalDate estimatedDate = LocalDate.parse(estimatedDateField.getText());
         float deliveryFees = Float.parseFloat(deliveryFeesField.getText());
@@ -59,6 +72,7 @@ public class DeliveryManagementController {
         deliveryService.add(delivery);
         deliveryTable.getItems().add(delivery);
     }
+
 
     @FXML
     private void updateDelivery() throws SQLException {
@@ -91,5 +105,12 @@ public class DeliveryManagementController {
             deliveryService.delete(selectedDelivery.getDeliveryId());
             deliveryTable.getItems().remove(selectedDelivery);
         }
+    }
+
+    @FXML
+    private void searchDelivery() throws SQLException {
+        String searchQuery = searchField.getText();
+        List<Delivery> searchedDeliveries = deliveryService.search(searchQuery);
+        deliveryTable.getItems().setAll(searchedDeliveries);
     }
 }

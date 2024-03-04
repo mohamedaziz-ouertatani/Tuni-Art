@@ -73,4 +73,29 @@ public class DeliveryService implements IService<Delivery> {
         }
         return deliveries;
     }
+
+    // New method for searching deliveries
+    public List<Delivery> search(String query) throws SQLException {
+        List<Delivery> deliveries = new ArrayList<>();
+        String sql = "SELECT * FROM delivery WHERE delivery_id LIKE ? OR order_id LIKE ? OR estimated_date LIKE ? OR delivery_fees LIKE ? OR destination LIKE ? OR state LIKE ? OR agency_id LIKE ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            for (int i = 1; i <= 7; i++) {
+                statement.setString(i, "%" + query + "%");
+            }
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Delivery delivery = new Delivery();
+                delivery.setDeliveryId(resultSet.getInt("delivery_id"));
+                delivery.setOrderId(resultSet.getInt("order_id"));
+                delivery.setEstimatedDate(resultSet.getDate("estimated_date").toLocalDate());
+                delivery.setDeliveryFees(resultSet.getFloat("delivery_fees"));
+                delivery.setDestination(resultSet.getString("destination"));
+                delivery.setState(resultSet.getBoolean("state"));
+                delivery.setAgencyId(resultSet.getInt("agency_id"));
+                deliveries.add(delivery);
+            }
+        }
+        return deliveries;
+    }
+
 }

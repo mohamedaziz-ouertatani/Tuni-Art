@@ -12,9 +12,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/tn/esprit/main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/tn/esprit/ReceiveOrder.fxml"));
         primaryStage.setTitle("Tuni'Art");
-        primaryStage.setScene(new Scene(root, 1600, 1200));
+        primaryStage.setScene(new Scene(root, 860, 600));
         primaryStage.show();
     }
 

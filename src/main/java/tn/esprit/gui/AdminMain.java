@@ -8,7 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class MainController {
+
+public class AdminMain {
 
     private void loadWindow(String fxmlFile) {
         try {
